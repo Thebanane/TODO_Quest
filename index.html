@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="manifest" href="manifest.webmanifest">
+        <meta name="theme-color" content="#1a1c2c">
+        <title>ToDo Quest</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+        <header>
+            <h1>Daily TODO Quest</h1>
+            <div id = "progressBar"></div>
+            <p id="progressCount"></p>
+        </header>
+
+
+        <form id="toDoForm">
+            <label for="toDoInput"> 
+                New Quest :
+            </label>
+            <input type="text" id="toDoInput" required autocomplete="off" maxlength="60">
+            <button type="submit"> ADD </button>
+        </form>
+
+        <ol id="toDoList">
+        </ol>
+
+        <section id="victory" hidden>Quests Completed !!!</section>
+
+        <script src= "script.js"></script>
+    </body>
+
+</html>
