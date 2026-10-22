@@ -1,0 +1,246 @@
+/* ---------- Fonts ---------- */
+@font-face {
+  font-family: "Press Start 2P";
+  src: url("fonts/PressStart2P-Regular.ttf") format("truetype");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "VT323";
+  src: url("fonts/VT323-Regular.ttf") format("truetype");
+  font-display: swap;
+}
+
+
+/* ---------- Palette ---------- */
+:root {
+  --bg: #1a1c2c;
+  --panel: #333c57;
+  --text: #f4f4f4;
+  --green: #38b764;
+  --yellow: #ffcd75;
+  --red: #b13e53;
+  --blue: #41a6f6;
+}
+
+/* ---------- Base ---------- */
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: "VT323", monospace;
+  font-size: 24px;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0 20px 48px;
+}
+
+/* ---------- Header ---------- */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--bg);
+  padding: 24px 0 20px;
+}
+
+h1 {
+  font-family: "Press Start 2P", monospace;
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+/* ---------- Progress bar (continuous) ---------- */
+#progressBar {
+  height: 28px;
+  background: var(--panel);
+  box-shadow:
+    0 -4px 0 0 var(--text),
+    0 4px 0 0 var(--text),
+    -4px 0 0 0 var(--text),
+    4px 0 0 0 var(--text);
+}
+
+#progressFill {
+  height: 100%;
+  width: 0;
+  background: var(--red);
+  transition: width 0.5s steps(8), background 0.5s steps(1);
+}
+
+#progressBar.low  #progressFill { background: var(--red); }
+#progressBar.mid  #progressFill { background: var(--yellow); }
+#progressBar.high #progressFill { background: var(--green); }
+
+#progressCount {
+  font-family: "Press Start 2P", monospace;
+  font-size: 10px;
+  margin-top: 16px;
+}
+
+/* ---------- Form ---------- */
+form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 24px 0 32px;
+}
+
+label {
+  flex-basis: 100%;
+  font-family: "Press Start 2P", monospace;
+  font-size: 10px;
+}
+
+input[type="text"] {
+  flex: 1;
+  min-width: 0;
+  padding: 10px 12px;
+  background: var(--bg);
+  color: var(--text);
+  border: none;
+  font-family: "VT323", monospace;
+  font-size: 24px;
+  box-shadow:
+    0 -4px 0 0 var(--blue),
+    0 4px 0 0 var(--blue),
+    -4px 0 0 0 var(--blue),
+    4px 0 0 0 var(--blue);
+}
+
+input[type="text"]:focus {
+  outline: none;
+  background: var(--panel);
+}
+
+/* ---------- Pixel buttons ---------- */
+button {
+  font-family: "Press Start 2P", monospace;
+  font-size: 10px;
+  color: var(--text);
+  background: var(--panel);
+  border: none;
+  padding: 12px 14px;
+  cursor: pointer;
+  box-shadow:
+    0 -3px 0 0 #000, 0 3px 0 0 #000,
+    -3px 0 0 0 #000, 3px 0 0 0 #000,
+    inset -3px -3px 0 0 rgba(0, 0, 0, 0.35),
+    inset 3px 3px 0 0 rgba(255, 255, 255, 0.25);
+}
+
+button:hover  { filter: brightness(1.15); }
+button:active {
+  transform: translateY(3px);
+  box-shadow:
+    0 -3px 0 0 #000, 0 0 0 0 #000,
+    -3px 0 0 0 #000, 3px 0 0 0 #000,
+    inset 3px 3px 0 0 rgba(0, 0, 0, 0.35);
+}
+
+.btn-complete { background: var(--green); color: #000; }
+.btn-delete   { background: var(--red); }
+
+/* ---------- Quest list ---------- */
+#toDoList {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  counter-reset: quest;
+}
+
+#toDoList li {
+  counter-increment: quest;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 16px;
+  background: var(--panel);
+  box-shadow:
+    0 -4px 0 0 var(--text), 0 4px 0 0 var(--text),
+    -4px 0 0 0 var(--text), 4px 0 0 0 var(--text);
+}
+
+#toDoList li::before {
+  content: counter(quest);
+  font-family: "Press Start 2P", monospace;
+  font-size: 10px;
+  color: var(--yellow);
+}
+
+.title {
+  flex: 1;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+}
+
+/* Finished quest */
+li.done .title {
+  text-decoration: line-through;
+  opacity: 0.5;
+}
+li.done .btn-complete { display: none; }
+
+/* ---------- Victory ---------- */
+#victory {
+  margin-top: 36px;
+  padding: 20px;
+  text-align: center;
+  font-family: "Press Start 2P", monospace;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--yellow);
+  background: var(--panel);
+  box-shadow:
+    0 -4px 0 0 var(--yellow), 0 4px 0 0 var(--yellow),
+    -4px 0 0 0 var(--yellow), 4px 0 0 0 var(--yellow);
+}
+
+#victory[hidden] { display: none; }
+
+/* ---------- Animation ---------- */
+
+@keyframes quest-enter {
+  from {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+#toDoList li.enter {
+  animation: quest-enter 0.4s ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #toDoList li.enter {
+    animation: none;
+  }
+}
+
+@keyframes quest-leave {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(+120%);
+    opacity: 0;
+  }
+}
+
+#toDoList li.leave {
+  animation: quest-leave 0.35s ease-in both;
+  pointer-events: none;
+}
+
