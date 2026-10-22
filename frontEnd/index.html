@@ -1,15 +1,35 @@
-<header>
-    <h1>Daily TODO</h1>
-</header>
+<!DOCTYPE html>
+<html lang="en">
 
-<body>
-    <form id="toDoForm">
-        <input type="text" name="todo">
-        <button type="submit"> ADD </button>
-    </form>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>ToDo Quest</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
 
-    <ol id="toDoList">
-    </ol>
+    <body>
+        <header>
+            <h1>Daily TODO Quest</h1>
+            <div id = "progressBar"></div>
+            <p id="progressCount"></p>
+        </header>
 
-    <script src="../backEnd/script.js"></script>
-</body>
+
+        <form id="toDoForm">
+            <label for="toDoInput"> 
+                New Quest :
+                <input type="text" id="toDoInput" required autocomplete="off" maxlength="60">
+            </label>
+            <button type="submit"> ADD </button>
+        </form>
+
+        <ol id="toDoList">
+        </ol>
+
+        <section id="victory" hidden>Quests Completed</section>
+
+        <script src= "../backEnd/script.js"></script>
+    </body>
+
+</html>
