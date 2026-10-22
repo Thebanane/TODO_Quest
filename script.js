@@ -102,3 +102,7 @@ list.addEventListener("click", (event) => {
   save();
   buildInHTML();
 });
+
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("sw.js");
+}
